@@ -1,4 +1,7 @@
 require_relative "../lib/weather.rb"
+require "pry"
+require "pry-remote"
+require "pry-nav"
 
 RSpec.describe Weather do
   describe "#temperature" do
