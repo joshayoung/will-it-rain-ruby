@@ -1,4 +1,5 @@
 require_relative "../lib/weather.rb"
+require "faraday"
 require "pry"
 require "pry-remote"
 require "pry-nav"
