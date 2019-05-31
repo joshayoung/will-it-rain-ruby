@@ -1,0 +1,48 @@
+def forecast_data
+  {"@context"=>
+    ["https://raw.githubusercontent.com/geojson/geojson-ld/master/contexts/geojson-base.jsonld",
+     {"wx"=>"https://api.weather.gov/ontology#",
+      "s"=>"https://schema.org/",
+      "geo"=>"http://www.opengis.net/ont/geosparql#",
+      "unit"=>"http://codes.wmo.int/common/unit/",
+      "@vocab"=>"https://api.weather.gov/ontology#",
+      "geometry"=>{"@id"=>"s:GeoCoordinates", "@type"=>"geo:wktLiteral"},
+      "city"=>"s:addressLocality",
+      "state"=>"s:addressRegion",
+      "distance"=>{"@id"=>"s:Distance", "@type"=>"s:QuantitativeValue"},
+      "bearing"=>{"@type"=>"s:QuantitativeValue"},
+      "value"=>{"@id"=>"s:value"},
+      "unitCode"=>{"@id"=>"s:unitCode", "@type"=>"@id"},
+      "forecastOffice"=>{"@type"=>"@id"},
+      "forecastGridData"=>{"@type"=>"@id"},
+      "publicZone"=>{"@type"=>"@id"},
+      "county"=>{"@type"=>"@id"}}],
+   "id"=>"https://api.weather.gov/points/40.7127,-74.0059",
+   "type"=>"Feature",
+   "geometry"=>{"type"=>"Point", "coordinates"=>[-74.0059, 40.7127]},
+   "properties"=>
+    {"@id"=>"https://api.weather.gov/points/40.7127,-74.0059",
+     "@type"=>"wx:Point",
+     "cwa"=>"OKX",
+     "forecastOffice"=>"https://api.weather.gov/offices/OKX",
+     "gridX"=>32,
+     "gridY"=>34,
+     "forecast"=>"https://api.weather.gov/gridpoints/OKX/32,34/forecast",
+     "forecastHourly"=>"https://api.weather.gov/gridpoints/OKX/32,34/forecast/hourly",
+     "forecastGridData"=>"https://api.weather.gov/gridpoints/OKX/32,34",
+     "observationStations"=>"https://api.weather.gov/gridpoints/OKX/32,34/stations",
+     "relativeLocation"=>
+      {"type"=>"Feature",
+       "geometry"=>{"type"=>"Point", "coordinates"=>[-74.0279259, 40.745251]},
+       "properties"=>
+        {"city"=>"Hoboken",
+         "state"=>"NJ",
+         "distance"=>{"value"=>4067.624856391074, "unitCode"=>"unit:m"},
+         "bearing"=>{"value"=>152, "unitCode"=>"unit:degrees_true"}}},
+     "forecastZone"=>"https://api.weather.gov/zones/forecast/NYZ072",
+     "county"=>"https://api.weather.gov/zones/county/NYC061",
+     "fireWeatherZone"=>"https://api.weather.gov/zones/fire/NYZ072",
+     "timeZone"=>"America/New_York",
+     "radarStation"=>"KDIX"}
+        }
+end
