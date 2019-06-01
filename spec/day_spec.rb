@@ -9,11 +9,11 @@ require "support/api_data"
 RSpec.describe Day do
   describe "#temperature" do
     it "returns the current temperature" do
-      day = Day.new("_")
+      forecast = Weather.new.get("32.7766", "-96.7969")
 
-      temperature = day.temperature
+      temperature = forecast.temperature
 
-      expect(temperature).to eq("90")
+      expect(temperature).to be_between(-30, 125).inclusive
     end
   end
 end
