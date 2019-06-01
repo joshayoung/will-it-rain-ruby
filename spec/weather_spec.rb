@@ -7,23 +7,32 @@ require "faraday_middleware"
 require "support/api_data"
 
 RSpec.describe Weather do
-  describe "#temperature" do
-    it "returns the current temperature" do
-      weather = Weather.new
-
-      temperature = weather.temperature
-
-      expect(temperature).to eq("90")
-    end
-  end
-
   describe "#forecast" do
     it "returns the format for the latitude and longitude passed" do
       weather = Weather.new
 
-      forecast = weather.forecast(latitude: "40.7127", longitude: "-74.0059")
+      points = weather.points(latitude: "32.7766", longitude: "-96.7969")
 
-      expect(forecast).to eq(forecast_data)
+      expect(points).to eq(forecast_data)
+    end
+  end
+
+  describe "#get" do
+    it "return an object with current forecast" do
+      weather = Weather.new
+      forecast = weather.get("32.7766", "-96.7969")
+
+      expect(forecast).to be_instance_of(Day)
+    end
+  end
+
+  describe "#forecast" do
+    it "returns the forecast URL" do
+      weather = Weather.new
+
+      forecast_url = weather.forecast_url(latitude: "32.7766", longitude: "-96.7969")
+
+      expect(forecast_url).to eq("https://api.weather.gov/gridpoints/FWD/88,103/forecast")
     end
   end
 end
