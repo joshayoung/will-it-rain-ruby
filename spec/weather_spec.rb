@@ -14,7 +14,7 @@ RSpec.describe Weather do
       forecast_stub
       weather = Weather.new("32.7766", "-96.7969")
 
-      forecast = weather.get
+      forecast = weather.get[0]
 
       expect(forecast).to be_instance_of(Day)
     end

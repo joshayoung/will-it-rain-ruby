@@ -11,7 +11,7 @@ class Weather
   end
 
   def get
-    Day.current(data["properties"]["periods"].first)
+    Day.current(data["properties"]["periods"])
   end
 
 private
