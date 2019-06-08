@@ -3,6 +3,10 @@ class Day
     @data = data
   end
 
+  def self.current(data)
+    new(data)
+  end
+
   def start_time
     @data["startTime"]
   end
