@@ -13,3 +13,4 @@ gem "pry-nav"
 gem "faraday"
 gem "faraday_middleware"
 gem "webmock"
+gem 'dotenv'
