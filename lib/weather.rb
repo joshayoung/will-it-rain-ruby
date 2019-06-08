@@ -4,7 +4,7 @@ require "day.rb"
 class Weather
   def get(lat, long)
     data = Fetch.retrieve(forecast_url(latitude: lat, longitude: long))
-    Day.new(data["properties"]["periods"].first)
+    Day.current(data["properties"]["periods"].first)
   end
 
 private
