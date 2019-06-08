@@ -1,12 +1,5 @@
 require_relative "../lib/weather.rb"
 require_relative "../lib/day.rb"
-require "pry"
-require "pry-remote"
-require "pry-nav"
-require "faraday"
-require "faraday_middleware"
-require "support/api_data"
-require "support/stubs"
 
 RSpec.describe Day do
   describe "Each method returns the correct output" do
@@ -14,6 +7,14 @@ RSpec.describe Day do
       points_stub
       forecast_stub
       @forecast = Weather.new("32.7766", "-96.7969").get[0]
+    end
+
+    context "when called name" do
+      it "returns the current day" do
+        name = @forecast.name
+
+        expect(name).to eq("tonight")
+      end
     end
 
     context "when called start_time" do
