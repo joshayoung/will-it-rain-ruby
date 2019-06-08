@@ -2,12 +2,28 @@ require_relative "./fetch.rb"
 require_relative "./day.rb"
 
 class Weather
-  def get(lat, long)
-    data = Fetch.retrieve(forecast_url(latitude: lat, longitude: long))
+  attr_accessor :latitude
+  attr_accessor :longitude
+
+  def initialize(lat, long)
+    @latitude = lat
+    @longitude = long
+  end
+
+  def get
     Day.current(data["properties"]["periods"].first)
   end
 
 private
+
+  def data
+    @data ||= Fetch.retrieve(
+      forecast_url(
+        latitude: latitude,
+        longitude: longitude
+      )
+    )
+  end
 
   def forecast_url(latitude:, longitude:)
     endpoints(latitude, longitude)["properties"]["forecast"]

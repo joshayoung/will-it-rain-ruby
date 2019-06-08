@@ -12,9 +12,9 @@ RSpec.describe Weather do
     it "return an object with current forecast" do
       points_stub
       forecast_stub
-      weather = Weather.new
+      weather = Weather.new("32.7766", "-96.7969")
 
-      forecast = weather.get("32.7766", "-96.7969")
+      forecast = weather.get
 
       expect(forecast).to be_instance_of(Day)
     end

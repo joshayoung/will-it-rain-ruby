@@ -13,7 +13,7 @@ RSpec.describe Day do
     before(:each) do
       points_stub
       forecast_stub
-      @forecast = Weather.new.get("32.7766", "-96.7969")
+      @forecast = Weather.new("32.7766", "-96.7969").get
     end
 
     context "when called start_time" do
