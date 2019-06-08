@@ -1,5 +1,5 @@
-require "fetch.rb"
-require "day.rb"
+require_relative "./fetch.rb"
+require_relative "./day.rb"
 
 class Weather
   def get(lat, long)

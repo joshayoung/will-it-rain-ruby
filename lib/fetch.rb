@@ -1,3 +1,5 @@
+require 'dotenv/load'
+
 class Fetch
   def self.retrieve(url)
     url = URI.parse(url)
