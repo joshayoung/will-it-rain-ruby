@@ -1,25 +1,35 @@
 require 'net/smtp'
-require 'faraday'
 require_relative './weather.rb'
-require "pry"
-require "pry-remote"
-require "pry-nav"
 
-lat = ARGV[0]
-long = ARGV[1]
-forecast = Weather.new.get(lat, long)
+class Mail
+  attr_accessor :forecast
+  attr_accessor :host
+  attr_accessor :to
+  attr_accessor :from
 
-eamil_message = <<EMAIL
-From: Test From <"#{ENV['FROM_EMAIL1']}">
-To: Test To <"#{ENV['TO_EMAIL1']}">
-MIME-Version: 1.0
-Content-type: text/html
-Subject: Weather Notification
+  def initialize(latitude: lat, longitude: long, host: nil, to: nil, from: nil)
+    @host = host || ENV["HOST"]
+    @to = to || ENV["TO"]
+    @from = from || ENV["FROM"]
+    @forecast = Weather.new(latitude, longitude).get[0]
+  end
 
-<h1>Email Body</h1>
-forecast.detailed_forecast
+  def email_message
+    content = <<EMAIL
+    From: Test From <"#{from}">
+    To: Test To <"#{to}">
+    MIME-Version: 1.0
+    Content-type: text/html
+    Subject: Weather Notification
+    <h1>Current Weather</h1>
+    <p>"#{forecast.detailed_forecast}"</p>
 EMAIL
+    content
+  end
 
-Net::SMTP.start(ENV["HOST"]) do |smtp|
-   smtp.send_message email_message, ENV["TO_EMAIL1"]
+  def send
+    Net::SMTP.start(host) do |smtp|
+      smtp.send_message email_message, to
+    end
+  end
 end

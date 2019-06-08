@@ -10,6 +10,14 @@ class Weather
     @longitude = long
   end
 
+  def generated_at
+    data["properties"]["generatedAt"]
+  end
+
+  def updated_at
+    data["properties"]["updated"]
+  end
+
   def get
     Day.current(data["properties"]["periods"])
   end

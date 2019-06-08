@@ -4,11 +4,17 @@ class Day
   end
 
   def self.current(data)
-    forecast = []
-    data.each do |current_day|
-      forecast.push(new(current_day))
-    end
+    @forecast ||= begin
+      forecast = []
+      data.each do |current_day|
+        forecast.push(new(current_day))
+      end
     forecast
+    end
+  end
+
+  def name
+    @data["name"].downcase
   end
 
   def start_time
