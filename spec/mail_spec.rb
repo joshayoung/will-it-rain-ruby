@@ -9,6 +9,7 @@ RSpec.describe Mail do
       longitude: "-96.7969"
     )
   end
+
   describe "#send" do
     it "uses the correct environmental variables for host, from, to" do
       expect(@mail.host).to eq("localhost")

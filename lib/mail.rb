@@ -2,10 +2,8 @@ require 'net/smtp'
 require_relative './weather.rb'
 
 class Mail
-  attr_accessor :forecast
-  attr_accessor :host
-  attr_accessor :to
-  attr_accessor :from
+  ATTRIBUTES = %i(forecast host to from).freeze
+  attr_accessor(*ATTRIBUTES)
 
   def initialize(latitude: lat, longitude: long, host: nil, to: nil, from: nil)
     @host = host || ENV["HOST"]
@@ -15,7 +13,7 @@ class Mail
   end
 
   def email_message
-    content = <<EMAIL
+    <<EMAIL
     From: Test From <"#{from}">
     To: Test To <"#{to}">
     MIME-Version: 1.0
@@ -24,7 +22,6 @@ class Mail
     <h1>Current Weather</h1>
     <p>"#{forecast.detailed_forecast}"</p>
 EMAIL
-    content
   end
 
   def send
