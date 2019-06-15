@@ -1,5 +1,4 @@
-require 'net/smtp'
-require_relative './weather.rb'
+require 'mail'
 
 class Email
   ATTRIBUTES = %i(host to from subject body).freeze
@@ -26,9 +25,13 @@ EMAIL
   end
 
   def send_mail
-    Net::SMTP.start(host) do |smtp|
-      smtp.send_message email_message, to
-    end
+    mail = Mail.new
+    mail.body = self.body
+    mail.from = self.from
+    mail.to = self.to
+    mail.subject = self.subject
+    mail.deliver!
+
   rescue Exception => e
     return e.message
   end
