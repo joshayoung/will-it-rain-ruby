@@ -4,13 +4,9 @@ class Day
   end
 
   def self.current(data)
-    @forecast ||= begin
-      forecast = []
-      data.each do |current_day|
-        forecast.push(new(current_day))
-      end
+    forecast = []
+    data.map { |day| forecast.push(new(day)) }
     forecast
-    end
   end
 
   def name
