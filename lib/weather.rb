@@ -19,7 +19,42 @@ class Weather
   end
 
   def get
-    Day.current(data["properties"]["periods"])
+    @get ||= Day.current(data["properties"]["periods"])
+  end
+
+  def day_name(name)
+    get.each do |day|
+      return day if day.name == name
+    end
+    "Unable to locate day"
+  end
+
+  def sunday
+    day_name("sunday")
+  end
+
+  def monday
+    day_name("monday")
+  end
+
+  def tuesday
+    day_name("tuesday")
+  end
+
+  def wednesday
+    day_name("wednesday")
+  end
+
+  def thursday
+    day_name("thursday")
+  end
+
+  def friday
+    day_name("friday")
+  end
+
+  def saturday
+    day_name("saturday")
   end
 
 private

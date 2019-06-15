@@ -5,7 +5,7 @@ class Day
 
   def self.current(data)
     forecast = []
-    data.map { |day| forecast.push(new(day)) }
+    data.each { |day| forecast.push(new(day)) }
     forecast
   end
 
