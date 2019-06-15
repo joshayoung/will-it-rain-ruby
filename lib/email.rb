@@ -1,11 +1,35 @@
-require_relative "../lib/mail.rb"
+require 'net/smtp'
+require_relative './weather.rb'
 
-mail = Mail.new(
-  host: "test@example.com",
-  to: "to@example.com",
-  from: "from@example.com",
-  subject: "Test Subject",
-  body: "Test Body"
-)
+class Email
+  ATTRIBUTES = %i(host to from subject body).freeze
+  attr_accessor(*ATTRIBUTES)
 
-puts mail.send_mail
+  def initialize(host: nil, to: nil, from: nil, subject:, body:)
+    @host = host || ENV["HOST"]
+    @to = to || ENV["TO"]
+    @from = from || ENV["FROM"]
+    @subject = subject
+    @body = body
+  end
+
+  def email_message
+    <<EMAIL
+    From: <"#{from}">
+    To: <"#{to}">
+    MIME-Version: 1.0
+    Content-type: text/html
+    Subject: Weather Notification
+    <h1>#{subject}</h1>
+    <p>#{body}</p>
+EMAIL
+  end
+
+  def send_mail
+    Net::SMTP.start(host) do |smtp|
+      smtp.send_message email_message, to
+    end
+  rescue Exception => e
+    return e.message
+  end
+end

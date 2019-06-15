@@ -14,5 +14,6 @@ gem "faraday"
 gem "faraday_middleware"
 gem "webmock"
 gem 'dotenv'
+gem 'mail'
 
 gem 'simplecov', require: false, group: :test
