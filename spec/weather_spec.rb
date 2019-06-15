@@ -43,7 +43,6 @@ RSpec.describe Weather do
       friday = @weather.friday
 
       expect(friday.name).to eq("friday")
-
     end
 
     it "each day returns the correct data" do
@@ -58,6 +57,13 @@ RSpec.describe Weather do
           expect(week_day).to be_an_instance_of(Day)
           expect(week_day.name).to eq(day)
         end
+    end
+
+    it "returns the correct message when day is not found" do
+      forecast_stub_missing_tuesday
+      tuesday = @weather.tuesday
+
+      expect(tuesday).to eq("Unable to locate day")
     end
   end
 end

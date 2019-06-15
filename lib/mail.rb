@@ -25,9 +25,11 @@ class Mail
 EMAIL
   end
 
-  def send
+  def send_mail
     Net::SMTP.start(host) do |smtp|
       smtp.send_message email_message, to
     end
+  rescue Exception => e
+    return e.message
   end
 end

@@ -1,4 +1,4 @@
-def forecast
+def forecast(tuesday: "Tuesday")
   {
     "@context": [
         "https://raw.githubusercontent.com/geojson/geojson-ld/master/contexts/geojson-base.jsonld",
@@ -138,7 +138,7 @@ def forecast
             },
             {
                 "number": 6,
-                "name": "Tuesday",
+                "name": "#{tuesday}",
                 "startTime": "2019-06-04T06:00:00-05:00",
                 "endTime": "2019-06-04T18:00:00-05:00",
                 "isDaytime": true,
