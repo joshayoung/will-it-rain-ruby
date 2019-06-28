@@ -9,3 +9,4 @@ This repo pulls in the current weather forecast for the week. The email function
  * Account for difference between the time the api is called.
  * Add rubocop.
  * Make some of these methods private and remove unnecessary tests.
+ * Create a separate class for API calls and move out of weather class.
