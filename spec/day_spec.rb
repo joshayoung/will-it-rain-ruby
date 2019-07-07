@@ -35,9 +35,9 @@ RSpec.describe Day do
 
     context "when called is_day_time" do
       it "returns the boolean value for day or night" do
-        is_day_time = @forecast.is_day_time
+        day_time = @forecast.day_time?
 
-        expect(is_day_time).to eq(false)
+        expect(day_time).to eq(false)
       end
     end
 
@@ -85,7 +85,10 @@ RSpec.describe Day do
       it "returns the detailed version of the forecast" do
         detailed_forecast = @forecast.detailed_forecast
 
-        expect(detailed_forecast).to eq("A chance of showers and thunderstorms before 1am. Partly cloudy. Low around 74, with temperatures rising to around 76 overnight. Southeast wind around 5 mph. Chance of precipitation is 30%.")
+        # rubocop:disable Metrics/LineLength
+        expect(detailed_forecast)
+          .to eq("A chance of showers and thunderstorms before 1am. Partly cloudy. Low around 74, with temperatures rising to around 76 overnight. Southeast wind around 5 mph. Chance of precipitation is 30%.")
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

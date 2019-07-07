@@ -36,7 +36,6 @@ RSpec.describe Weather do
       friday = @weather.friday
 
       expect(friday).to be_an_instance_of(Day)
-
     end
 
     it "returns the correct data called" do
@@ -46,17 +45,11 @@ RSpec.describe Weather do
     end
 
     it "each day returns the correct data" do
-      ["sunday",
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday"].each do |day|
-          week_day = @weather.send(day)
-          expect(week_day).to be_an_instance_of(Day)
-          expect(week_day.name).to eq(day)
-        end
+      %w(sunday monday tuesday wednesday thursday friday saturday).each do |day|
+        week_day = @weather.send(day)
+        expect(week_day).to be_an_instance_of(Day)
+        expect(week_day.name).to eq(day)
+      end
     end
 
     it "returns the correct message when day is not found" do
