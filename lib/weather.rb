@@ -1,5 +1,6 @@
 require_relative "./fetch.rb"
 require_relative "./day.rb"
+require_relative "./retrieve.rb"
 
 class Weather
   attr_accessor :latitude
@@ -30,6 +31,10 @@ class Weather
 
 private
 
+def retrieve
+  @retrieve ||= Retrieve.new
+end
+
   def day_name(name)
     get.each do |day|
       return day if day.name == name
@@ -38,19 +43,14 @@ private
   end
 
   def data
-    @data ||= Fetch.retrieve(
-      forecast_url(
-        latitude: latitude,
-        longitude: longitude
-      )
-    )
+    retrieve.data(latitude, longitude)
   end
 
   def forecast_url(latitude:, longitude:)
-    endpoints(latitude, longitude)["properties"]["forecast"]
+    retrive.forecast_url(latitude: latitude, longitude: longitude)
   end
 
   def endpoints(lat, long)
-    Fetch.retrieve("https://api.weather.gov/points/#{lat},#{long}")
+    retrieve.endpoints(lat, long)
   end
 end
