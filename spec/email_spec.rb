@@ -1,8 +1,8 @@
 require_relative "../lib/email.rb"
 
-include Mail::Matchers
-
 RSpec.describe Email do
+  include Mail::Matchers
+
   before(:each) do
     @email = Email.new(
       subject: "Test Subject",
@@ -22,7 +22,9 @@ RSpec.describe Email do
     it "outputs the correct email format" do
       email_message = @email.email_message
 
+      # rubocop:disable Metrics/LineLength
       expect(email_message).to eq("    From: <\"from@example.com\">\n    To: <\"to@example.com\">\n    MIME-Version: 1.0\n    Content-type: text/html\n    Subject: Weather Notification\n    <h1>Test Subject</h1>\n    <p>\Test Body\</p>\n")
+      # rubocop:enable Metrics/LineLength
     end
 
     it "sends an email correctly" do
@@ -59,7 +61,7 @@ RSpec.describe Email do
       )
       error = "error from delivery"
       allow(Mail).to receive(:new).and_return(mail)
-      allow(mail).to receive(:deliver!).and_raise(Exception, error)
+      allow(mail).to receive(:deliver!).and_raise(StandardError, error)
 
       expect(@email.send_mail).to eq(error)
     end

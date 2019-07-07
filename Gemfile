@@ -2,21 +2,21 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 ruby "2.5.0"
 
-gem "rspec"
-gem "pry"
-gem "pry-remote"
-gem "pry-nav"
+gem "dotenv"
 gem "faraday"
 gem "faraday_middleware"
+gem "mail"
+gem "pry"
+gem "pry-nav"
+gem "pry-remote"
+gem "rspec"
 gem "webmock"
-gem 'dotenv'
-gem 'mail'
 
-gem 'simplecov', require: false, group: :test
+gem "simplecov", require: false, group: :test
 
 group :test, :development do
   gem "ramsey_cop"

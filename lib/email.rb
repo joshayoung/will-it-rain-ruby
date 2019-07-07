@@ -1,4 +1,4 @@
-require 'mail'
+require "mail"
 
 class Email
   ATTRIBUTES = %i(host to from subject body).freeze
@@ -26,13 +26,12 @@ EMAIL
 
   def send_mail
     mail = Mail.new
-    mail.body = self.body
-    mail.from = self.from
-    mail.to = self.to
-    mail.subject = self.subject
+    mail.body = body
+    mail.from = from
+    mail.to = to
+    mail.subject = subject
     mail.deliver!
-
-  rescue Exception => e
-    return e.message
+  rescue StandardError => e
+    e.message
   end
 end

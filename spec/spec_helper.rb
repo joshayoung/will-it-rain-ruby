@@ -1,8 +1,8 @@
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
-require 'webmock/rspec'
-require 'dotenv/load'
+require "webmock/rspec"
+require "dotenv/load"
 require "faraday"
 require "faraday_middleware"
 require "pry"

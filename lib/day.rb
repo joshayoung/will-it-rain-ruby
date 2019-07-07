@@ -21,7 +21,7 @@ class Day
     @data["endTime"]
   end
 
-  def is_day_time
+  def day_time?
     @data["isDaytime"]
   end
 
