@@ -10,6 +10,10 @@ class Weather
     @longitude = long
   end
 
+  def get
+    @get ||= Day.current(data["properties"]["periods"])
+  end
+
   def generated_at
     data["properties"]["generatedAt"]
   end
@@ -18,9 +22,13 @@ class Weather
     data["properties"]["updated"]
   end
 
-  def get
-    @get ||= Day.current(data["properties"]["periods"])
+  %w(sunday monday tuesday wednesday thursday friday saturday).each do |day|
+    define_method(day.to_sym) do
+      day_name(day)
+    end
   end
+
+private
 
   def day_name(name)
     get.each do |day|
@@ -28,36 +36,6 @@ class Weather
     end
     "Unable to locate day"
   end
-
-  def sunday
-    day_name("sunday")
-  end
-
-  def monday
-    day_name("monday")
-  end
-
-  def tuesday
-    day_name("tuesday")
-  end
-
-  def wednesday
-    day_name("wednesday")
-  end
-
-  def thursday
-    day_name("thursday")
-  end
-
-  def friday
-    day_name("friday")
-  end
-
-  def saturday
-    day_name("saturday")
-  end
-
-private
 
   def data
     @data ||= Fetch.retrieve(
