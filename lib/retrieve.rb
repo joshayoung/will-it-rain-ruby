@@ -2,12 +2,12 @@ require_relative "./fetch.rb"
 
 class Retrieve
   def data(latitude, longitude)
-    @data ||= Fetch.retrieve(
-      forecast_url(
-        latitude: latitude,
-        longitude: longitude
-      )
-    )
+    @data ||= JSON.parse(Fetch.retrieve(
+                           forecast_url(
+                             latitude: latitude,
+                             longitude: longitude
+                           )
+                         ))
   end
 
 private
@@ -17,6 +17,6 @@ private
   end
 
   def endpoints(lat, long)
-    Fetch.retrieve("https://api.weather.gov/points/#{lat},#{long}")
+    JSON.parse(Fetch.retrieve("https://api.weather.gov/points/#{lat},#{long}"))
   end
 end
