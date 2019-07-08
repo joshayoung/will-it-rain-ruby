@@ -1,8 +1,6 @@
 require "faraday"
 require "faraday_middleware"
 require "uri"
-require "json"
-require "dotenv/load"
 
 class Fetch
   def self.get(url)

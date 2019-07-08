@@ -2,9 +2,6 @@ require_relative "./day.rb"
 require_relative "./retrieve.rb"
 
 class Weather
-  attr_accessor :latitude
-  attr_accessor :longitude
-
   def initialize(lat, long)
     @latitude = lat
     @longitude = long
@@ -32,8 +29,8 @@ private
 
   def retrieve
     @retrieve ||= Retrieve.new(
-      latitude: latitude,
-      longitude: longitude
+      latitude: @latitude,
+      longitude: @longitude
     )
   end
 
