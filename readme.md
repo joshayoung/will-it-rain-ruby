@@ -7,5 +7,3 @@ This repo pulls in the current weather forecast for the week. The email function
 
 ## To Do
  * Account for difference between the time the api is called.
- * Create a separate class for API calls and move out of weather class.
- * Finish added the Retrieve class

@@ -31,7 +31,10 @@ class Weather
 private
 
   def retrieve
-    @retrieve ||= Retrieve.new
+    @retrieve ||= Retrieve.new(
+      latitude: latitude,
+      longitude: longitude
+    )
   end
 
   def day_name(name)
@@ -42,6 +45,6 @@ private
   end
 
   def data
-    retrieve.data(latitude, longitude)
+    retrieve.data
   end
 end

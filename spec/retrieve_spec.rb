@@ -5,9 +5,12 @@ RSpec.describe Retrieve do
     it "returns the forecast" do
       points_stub
       forecast_stub
-      retrieve = Retrieve.new
+      retrieve = Retrieve.new(
+        latitude: "32.7766",
+        longitude: "-96.7969"
+      )
 
-      data = retrieve.data("32.7766", "-96.7969")
+      data = retrieve.data
 
       expect(data).to eq(forecast)
     end
