@@ -1,4 +1,5 @@
 require_relative "../lib/email.rb"
+require_relative "../lib/weather.rb"
 
 email = Email.new(
   host: "test@example.com",
@@ -8,4 +9,5 @@ email = Email.new(
   body: "Test Body"
 )
 
-puts email.send_mail
+puts email.email_message
+# puts email.send_mail
