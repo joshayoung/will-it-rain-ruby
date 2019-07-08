@@ -1,3 +1,5 @@
+require_relative "./fetch.rb"
+
 class Retrieve
   def data(latitude, longitude)
     @data ||= Fetch.retrieve(
@@ -7,6 +9,8 @@ class Retrieve
       )
     )
   end
+
+private
 
   def forecast_url(latitude:, longitude:)
     endpoints(latitude, longitude)["properties"]["forecast"]
