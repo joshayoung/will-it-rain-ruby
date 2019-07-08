@@ -1,4 +1,3 @@
-require_relative "./fetch.rb"
 require_relative "./day.rb"
 require_relative "./retrieve.rb"
 
@@ -31,9 +30,9 @@ class Weather
 
 private
 
-def retrieve
-  @retrieve ||= Retrieve.new
-end
+  def retrieve
+    @retrieve ||= Retrieve.new
+  end
 
   def day_name(name)
     get.each do |day|
@@ -44,13 +43,5 @@ end
 
   def data
     retrieve.data(latitude, longitude)
-  end
-
-  def forecast_url(latitude:, longitude:)
-    retrive.forecast_url(latitude: latitude, longitude: longitude)
-  end
-
-  def endpoints(lat, long)
-    retrieve.endpoints(lat, long)
   end
 end

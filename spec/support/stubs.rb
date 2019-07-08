@@ -6,7 +6,7 @@ def points_stub
     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
     'User-Agent'=>'Faraday v0.15.4'
     }).
-  to_return(status: 200, body: endpoints.to_json, headers: {})
+  to_return(status: 200, body: endpoints.to_json, headers: {'Content-Type': 'application/json'})
 end
 
 def forecast_stub
