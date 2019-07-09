@@ -56,7 +56,7 @@ RSpec.describe Weather do
       forecast_stub_missing_tuesday
       tuesday = @weather.tuesday
 
-      expect(tuesday).to eq("Unable to locate day")
+      expect(tuesday).to be_an_instance_of(NoDay)
     end
   end
 end
