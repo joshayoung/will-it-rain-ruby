@@ -1,4 +1,5 @@
 require_relative "./day.rb"
+require_relative "./noday.rb"
 require_relative "./retrieve.rb"
 
 class Weather
@@ -19,7 +20,15 @@ class Weather
     data["properties"]["updated"]
   end
 
-  %w(sunday monday tuesday wednesday thursday friday saturday).each do |day|
+  %w(
+    sunday
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+    ).each do |day|
     define_method(day.to_sym) do
       day_name(day)
     end
@@ -38,7 +47,7 @@ private
     get.each do |day|
       return day if day.name == name
     end
-    "Unable to locate day"
+    NoDay.new
   end
 
   def data

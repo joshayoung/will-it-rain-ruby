@@ -1,4 +1,5 @@
 require_relative "../lib/weather.rb"
+require "json"
 
 forecast = Weather.new("32.7766", "-96.7969").get
 
