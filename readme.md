@@ -4,6 +4,3 @@ This repo pulls in the current weather forecast for the week. The email function
 ## To see testing coverage report:
  * Start a server at the root of the project (python's SimpleHTTPServer works for this)
  * Navigate to `http://localhost:8000/coverage` in your browser
-
-## To Do
- * Account for difference between the time the api is called.
